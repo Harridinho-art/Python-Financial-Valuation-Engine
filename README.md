@@ -1,12 +1,23 @@
 # Python-Financial-Valuation-Engine
-An automated financial modeling script using Pandas and yfinance to calculate DCF, Free Cash Flow and estimate intrinsic share prices.
-Back in April, I endertook a semi-conductor market analysis follwing their recent boom as their stock rocketed. At the time I manually pulled all data from Yahoo Finance and input it into CSV files due to Yahoo locking their spreadsheet downlaod option behind a paywall. Fast forward to today, I have been blessed with the decent knowledge of python's capabilities and I have undertook a challenge to write a script that can not only fetch the data for me from Yahoo Finance but also perform valuations, and estimations to mention a few. 
+An automated financial modeling script using Pandas and yfinance to calculate DCF, Free Cash Flow and estimate intrinsic share prices to name a few.
 
-This is a reletively straightforward script, but I am making progress to pull and valuate up to 10 companies at once. The greatest takeaway is that I don't have to manually extract all the infor from Yahoo Finance and input the data myself, coupled with the fact that I can command python to load all the data into a spreadhseet, this makes for an effecient script in the long-term. 
+## 🧮 Core Calculation Pipeline
+To estimate the intrinsic value of each company, the script automatically executes the following financial modeling steps:
+* **Free Cash Flow (FCF) Projection:** Applies estimated growth rates to current cash flows to project financial performance over a 5-year forecast window.
+* **Terminal Value (Gordon Growth Model):** Calculates the continuous perpetuity value of the company beyond the 5-year forecast.
+* **Enterprise Value (EV):** Discounts both the 5-year projected FCFs and the Terminal Value back to Present Value (PV) using a defined discount rate.
+* **Equity Value Bridge:** Dynamically pulls the company's live balance sheet to add Cash and Cash Equivalents and subtract Total Debt from the Enterprise Value.
+* **Intrinsic Value Per Share:** Divides the final Equity Value by the live number of Shares Outstanding to output the true estimated target price.
+* **Margin of Safety:** Compares the calculated intrinsic share price against the live market trading price to determine the percentage of upside or downside.
 
-By the way, here is the link to my semi-conductor market analysis from April - https://github.com/Harridinho-art/Semiconductor-market-analysis
+Back in April, I undertook a semi-conductor market analysis following their recent boom as their stock rocketed. At the time I manually pulled all data from Yahoo Finance and input it into CSV files due to Yahoo locking their spreadsheet download option behind a paywall. Fast forward to today, I have decent knowledge of python's capabilities and I have taken it upon myself to write a script that can not only fetch the data for me from Yahoo Finance but also perform valuations, and estimations to mention a few. 
 
-For my current script, I did not focus on semi-conductor stocks but instead just random companies in the S&P 500, limited to 3 of course. ## 🖥️ Live Terminal Output
+This is a relatively straightforward script, which allows for up to 3 companies at a time to be valuated. Since the script runs on Yahoo Finance, all that is needed is to feed it the ticker symbols (e.g. Apple-AAPL, Microsoft-MSFT) and the extraction and valuation will be underway. The greatest takeaway is that I don't have to manually extract all the info from Yahoo Finance and input the data myself, coupled with the fact that I can command python to load all the data which includes calculations into a spreadsheet, this makes for an effecient script in the long-term. 
+
+Here is the link to my semi-conductor market analysis from April - https://github.com/Harridinho-art/Semiconductor-market-analysis
+
+For my current script, I did not focus on semi-conductor stocks but instead I broadened the scope to include every company on Yahoo's database. The engine is currently being scaled to process up to 10 companies simultaneously.
+## 🖥️ Live Terminal Output
 Here is an example of the engine dynamically pulling data and valuing in real-time:
 
 <img width="1886" height="1007" alt="Screenshot 2026-09-06 173116" src="https://github.com/user-attachments/assets/3a18f33a-fa6f-4ba3-b9e7-2299075ccb56" />
